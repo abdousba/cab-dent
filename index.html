@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,17 +10,52 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #f7f7f7;
+      --text: #222;
+      --card: #ffffff;
+      --header: #00d1a0;
+      --btn: #00d1a0;
+      --btn-hover: #00b88b;
+      --border: #ccc;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #f0f0f0;
+      --card: #1e1e1e;
+      --header: #0e7d63;
+      --btn: #0e7d63;
+      --btn-hover: #19a585;
+      --border: #444;
+    }
+
     body {
       font-family: 'Cairo', sans-serif;
       margin: 0;
-      background: #f7f7f7;
+      background: var(--bg);
+      color: var(--text);
+      transition: all 0.4s ease;
     }
 
     .header {
-      background-color: #00d1a0;
+      background-color: var(--header);
       height: 100px;
       border-bottom-left-radius: 30px;
       border-bottom-right-radius: 30px;
+    }
+
+    .toggle-dark {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--btn);
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
     }
 
     .container {
@@ -30,7 +66,7 @@
     }
 
     .card {
-      background: white;
+      background: var(--card);
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       margin: 10px;
@@ -51,7 +87,7 @@
 
     .btn {
       padding: 10px 20px;
-      background-color: #00d1a0;
+      background-color: var(--btn);
       color: white;
       border: none;
       border-radius: 8px;
@@ -59,21 +95,26 @@
       cursor: pointer;
       width: 100%;
       font-size: 16px;
+      transition: background-color 0.3s ease;
     }
 
     .btn:hover {
-      background-color: #00b88b;
-      transition: background-color 0.3s ease;
+      background-color: var(--btn-hover);
     }
 
     input, select {
       width: 100%;
       padding: 8px;
       margin: 8px 0;
-      border: 1px solid #ccc;
+      border: 1px solid var(--border);
       border-radius: 6px;
       box-sizing: border-box;
-      font-family: 'Cairo', sans-serif;
+      background-color: transparent;
+      color: var(--text);
+    }
+
+    input::placeholder {
+      color: #999;
     }
 
     img {
@@ -91,7 +132,7 @@
 
     #confirmation {
       display: none;
-      color: green;
+      color: limegreen;
       font-weight: bold;
       margin-top: 15px;
       text-align: center;
@@ -115,6 +156,8 @@
 </head>
 
 <body>
+  <button class="toggle-dark" onclick="toggleDarkMode()">🌙 الوضع الليلي</button>
+
   <div style="text-align:center; padding:40px 0; font-size:25px; font-weight:bold;">
     Dr. LOUADJ Abderrahmane
   </div>
@@ -123,13 +166,14 @@
   <div class="container">
     <div class="card">
       <img src="https://application-assets-s3.s3.eu-west-3.amazonaws.com/avatars/male_avatar.png" alt="Doctor" />
-      <h2>cabinet 🦷 dentaire</h2>
+      <h2>cabinet dentaire</h2>
       <p>Dentiste</p>
-      <p>📌 05,rue larej sekkal, Remchi, 13000 - TLEMCEN.</p>
+      <p>📍 Remchi, 05 rue larej sekkal, 13000, TLEMCEN.</p>
+
       <div class="section">
-        <h3>Contact</h3>
-        <p>📧 contact.dentaire@gmail.com</p>
-        <p>📱 Téléphone: +213697552453 / +213555698575</p>
+        <h3>📞 Contact</h3>
+        <p>Email: contact.dentaire@gmail.com</p>
+        <p>Téléphone: +213697552453 / +213555698575</p>
       </div>
 
       <div class="section">
@@ -147,7 +191,6 @@
         <div id="confirmation">✅ تم إرسال الحجز بنجاح!</div>
       </div>
 
-      <!-- خريطة -->
       <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3383.276006456151!2d-1.439964684803465!3d35.058556880344116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7846d32e1f1265%3A0x5e0e3c36e9ef82f0!2sRemchi!5e0!3m2!1sfr!2sdz!4v1688004624677!5m2!1sfr!2sdz" allowfullscreen></iframe>
 
       <a href="https://www.google.com/maps?q=Remchi,+05+rue+larej+sekkal,+Tlemcen"
@@ -190,6 +233,10 @@
         alert("حدث خطأ أثناء الإرسال!");
       });
     });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
   </script>
 </body>
 </html>
