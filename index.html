@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f7f7f7;
+    }
+    .header {
+      background-color: #00d1a0;
+      height: 100px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 10px;
+      padding: 30px;
+      flex: 1 1 300px;
+      max-width: 500px;
+      box-sizing: border-box;
+    }
+    h2 {
+      margin: 10px 0 5px;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: #00d1a0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+      width: 100%;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    img {
+      width: 100px;
+      border-radius: 50%;
+    }
+    @media (max-width: 600px) {
+      .card {
+        padding: 20px;
+      }
+      .btn {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="text-align:center; padding:40px 0; font-size:25px; font-weight:bold;">
+    Dr. LOUADJ Abderrahmane
+  </div>
+  <div class="header"></div>
+  <div class="container">
+    <div class="card">
+      <img src="https://application-assets-s3.s3.eu-west-3.amazonaws.com/avatars/male_avatar.png" alt="Doctor">
+      <h2>cabinet dentaire</h2>
+      <p>Dentiste</p>
+      <p>📍 Remchi, 05 rue larej sekkal, 13000, TLEMCEN.</p>
+      <div class="section">
+        <h3>📞 Contact</h3>
+        <p>Email: contact.dentaire@gmail.com</p>
+        <p>Téléphone: +213697552453 / +213555698575</p>
+      </div>
+      <div class="section">
+        <h3>🗓️ Réserver un rendez-vous</h3>
+        <form>
+          <label for="motif">Motif de consultation:</label>
+          <select id="motif">
+            <option>Extraction dentaire</option>
+            <option>Contrôle annuel</option>
+            <option>Urgence dentaire</option>
+            <option>Enfant - consultation dentaire</option>
+            <option>Détartrage</option>
+            <option>Blanchiment des dents</option>
+<input type="text" name="name" placeholder="Nom" required><br>
+<input type="text" name="name" placeholder="Téléphone" required><br>
+          </select>
+          <label for="date">Date:</label>
+          <input type="date" id="date">
+          <label for="heure">Heure:</label>
+          <input type="time" id="heure">
+          <button class="btn" type="submit">Confirmer la réservation</button>
+        </form>
+      </div>
+    </div>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbws06zirgo_QliGMTrQC19bsXVKfk0p7uu4cqmlaFWpOR3wpoKZB8toxxT-VtD21dO9/exec';
+
+    document.getElementById('booking-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        date: form.date.value,
+        time: form.time.value
+      };
+
+      fetch(scriptURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+        mode: 'no-cors'
+      })
+      .then(res => res.text())
+      .then(msg => {
+        alert("تم الإرسال بنجاح!");
+        form.reset();
+      })
+      .catch(err => {
+        console.error(err);
+        alert("حدث خطأ أثناء الإرسال!");
+      });
+    });
+  </script>
+
+  </div>
+</body>
+</html>
