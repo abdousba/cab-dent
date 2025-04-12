@@ -116,11 +116,11 @@
 
       const form = e.target;
       const data = {
-        name: form.name.value,
+        name: form.nom.value,
         email: form.email.value,
-        phone: form.phone.value,
+        phone: form.téléphone.value,
         date: form.date.value,
-        time: form.time.value
+        time: form.heure.value
       };
 
       fetch(scriptURL, {
@@ -141,6 +141,5 @@
     });
   </script>
 
-  </div>
 </body>
 </html>
